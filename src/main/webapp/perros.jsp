@@ -14,7 +14,8 @@
             <th scope="col">id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Raza</th>
-            <th scope="col">Numero</th>
+            <th scope="col">Historia</th>
+            <th scope="col">Vacunas</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +34,8 @@
 	            <td>${peIteracion.id}</td>
 	            <td>${peIteracion.nombre}</td>
 	            <td>${peIteracion.Raza}</td>
-	            <td>${peIteracion.Numero}</td>
+	            <td>${peIteracion.Historia}</td>
+	            <td>${peIteracion.Vacunas}</td>
 	          </tr>
 	         </c:forEach> 
 	         <!-- terminamos de recorrer -->

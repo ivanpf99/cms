@@ -25,7 +25,11 @@ public class PerrosDAO {
 	public static ArrayList<Perro> getAll() {
 
 		ArrayList<Perro> perros = new ArrayList<Perro>();
-		String sql = "SELECT id, numero, nombre, id_raza,  FROM Perros ; ";
+		String sql = " SELECT  + "p.id, + "p.nombre, + "p.historia, + "r.nombre as raza, "
+				+ "vacunaciones.id_vacuna " + " FROM perro AS p INNER JOIN raza AS r ON p.id_raza = r.id "
+				+ "LEFT JOIN vacunaciones on p.id = vacunaciones.id_perro "
+				+ "LEFT JOIN vacuna as v on vacunaciones.id_vacuna = v.id; ";
+	
 
 		try (
 
@@ -44,12 +48,14 @@ public class PerrosDAO {
 				int colId = rs.getInt("id");
 				String colNombre = rs.getString("nombre");
 				String colRaza = rs.getString("id_raza");
-				int colNumero = rs.getInt("numero");
+				String colHistoria = rs.getString("historia");
+				String colVacunas = rs.getString("vacunas");
 
 				pe.setId(colId);
 				pe.setNombre(colNombre);
 				pe.setRaza(colRaza);
-				pe.setNumero(colNumero);
+				pe.setHistoria(colHistoria);
+				pe.setVacunas(colVacunas);
 
 				// añadir objeto al ArrayList
 				perros.add(pe);
