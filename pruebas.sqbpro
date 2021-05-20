@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Desarrollo Java/CMS/pruebas.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1345"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainprueba"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Usuarios" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="57"/><column index="3" value="42"/><column index="4" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="perro" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="57"/><column index="3" value="56"/><column index="4" value="57"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="perros" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="57"/><column index="3" value="65"/><column index="4" value="85"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE IF NOT EXISTS &quot;raza&quot; (
+	&quot;id&quot;	INTEGER NOT NULL,
+	&quot;nombre&quot;	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY(&quot;id&quot; AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS &quot;vacuna&quot; (
+	&quot;id&quot;	INTEGER NOT NULL,
+	&quot;nombre&quot;	INTEGER NOT NULL UNIQUE,
+	PRIMARY KEY(&quot;id&quot; AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS &quot;perro&quot; (
+	&quot;id&quot;	INTEGER NOT NULL,
+	&quot;nombre&quot;	TEXT NOT NULL UNIQUE,
+	&quot;historia&quot;	TEXT NOT NULL,
+	&quot;id_raza&quot;	INTEGER NOT NULL,
+	PRIMARY KEY(&quot;id&quot; AUTOINCREMENT),
+	FOREIGN KEY(&quot;id_raza&quot;) REFERENCES &quot;raza&quot;(&quot;id&quot;)
+);
+CREATE TABLE IF NOT EXISTS &quot;vacunaciones&quot; (
+	&quot;id_perro&quot;	INTEGER NOT NULL,
+	&quot;id_vacuna&quot;	INTEGER NOT NULL,
+	&quot;fecha&quot;	TEXT,
+	PRIMARY KEY(&quot;id_perro&quot;,&quot;id_vacuna&quot;),
+	FOREIGN KEY(&quot;id_perro&quot;) REFERENCES &quot;perro&quot;(&quot;id&quot;)
+);
+INSERT INTO &quot;raza&quot; (&quot;id&quot;,&quot;nombre&quot;) VALUES (1,'Boxer'),
+ (2,'Caza'),
+ (3,'Cruce');
+INSERT INTO &quot;vacuna&quot; (&quot;id&quot;,&quot;nombre&quot;) VALUES (1,'pfizer'),
+ (2,'AstraZenek');
+INSERT INTO &quot;perro&quot; (&quot;id&quot;,&quot;nombre&quot;,&quot;historia&quot;,&quot;id_raza&quot;) VALUES (1,'Snoppy','lorem ipsum snoppy',1),
+ (2,'ratplam','lorem ipsum rataplam',2),
+ (3,'Laika','lorem ipsum laika',1),
+ (4,'Baldo','lorem ipsum Baldo',1),
+ (5,'Pulgas','pulgoas hidsotria',2);
+INSERT INTO &quot;vacunaciones&quot; (&quot;id_perro&quot;,&quot;id_vacuna&quot;,&quot;fecha&quot;) VALUES (1,1,'19/05/2021'),
+ (1,2,'17/05/2021');
+COMMIT;</sql><current_tab id="0"/></tab_sql></sqlb_project>
