@@ -4,7 +4,7 @@ public class Perro {
 
 	private int id;
 	private String nombre;
-	private String raza;
+	private Raza raza;
 	private String historia;
 	private String vacunas;
 
@@ -12,7 +12,7 @@ public class Perro {
 		super();
 		this.id = 0;
 		this.nombre = "";
-		this.raza = "";
+		this.raza = new Raza();
 		this.historia = "";
 		this.vacunas = "";
 
@@ -50,11 +50,11 @@ public class Perro {
 		this.nombre = nombre;
 	}
 
-	public String getRaza() {
+	public Raza getRaza() {
 		return raza;
 	}
 
-	public void setRaza(String raza) {
+	public void setRaza(Raza raza) {
 		this.raza = raza;
 	}
 

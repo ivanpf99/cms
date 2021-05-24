@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.elorrieta.cms.modelo.Perro;
+import com.elorrieta.cms.modelo.Raza;
 
 /**
  * Clase encargada relacionar el POJO con la Tabla DAO Data Access Object
@@ -13,7 +14,7 @@ import com.elorrieta.cms.modelo.Perro;
  * @author Admin
  *
  */
-public class PerrosDAO {
+public class PerroDAO {
 
 	/**
 	 * Consulta la tabla 'participante' para recuperar todos y devolverlos en una
@@ -25,11 +26,8 @@ public class PerrosDAO {
 	public static ArrayList<Perro> getAll() {
 
 		ArrayList<Perro> perros = new ArrayList<Perro>();
-		String sql = " SELECT  + "p.id, + "p.nombre, + "p.historia, + "r.nombre as raza, "
-				+ "vacunaciones.id_vacuna " + " FROM perro AS p INNER JOIN raza AS r ON p.id_raza = r.id "
-				+ "LEFT JOIN vacunaciones on p.id = vacunaciones.id_perro "
-				+ "LEFT JOIN vacuna as v on vacunaciones.id_vacuna = v.id; ";
-	
+		String sql = " SELECT perro.id, perro.nombre, historia, raza.nombre as 'raza', raza.id as 'id_raza' "
+				+ " FROM perro INNER JOIN raza ON perro.id_raza = raza.id " + " ORDER BY perro.id ASC; ";
 
 		try (
 
@@ -50,12 +48,17 @@ public class PerrosDAO {
 				String colRaza = rs.getString("id_raza");
 				String colHistoria = rs.getString("historia");
 				String colVacunas = rs.getString("vacunas");
+				int colRazaId = rs.getInt("id_raza");
 
 				pe.setId(colId);
 				pe.setNombre(colNombre);
-				pe.setRaza(colRaza);
 				pe.setHistoria(colHistoria);
 				pe.setVacunas(colVacunas);
+
+				Raza raza = new Raza();
+				raza.setId(colRazaId);
+				raza.setNombre(colRazaNombre);
+				pe.setRaza(raza);
 
 				// añadir objeto al ArrayList
 				perros.add(pe);

@@ -6,6 +6,9 @@
 <main class="container">
     <h1>Listado Perros</h1>
     <a href="perro.html">Nuevo Perro</a>
+     <div class="row">
+    
+    	<div class="col">
     
     <table class="table table-striped table-hover">
         <thead>
@@ -28,12 +31,12 @@
         
         -->
         
-        <c:forEach var="peIteracion" items="${usuarios}">
+        <c:forEach var="peIteracion" items="${perros}">
 	          <tr>
-	            <th scope="row">${uIteracion.id}</th>
+	            <th scope="row">${peIteracion.id}</th>
 	            <td>${peIteracion.id}</td>
 	            <td>${peIteracion.nombre}</td>
-	            <td>${peIteracion.Raza}</td>
+	            <td>${p.raza.nombre}</td>
 	            <td>${peIteracion.Historia}</td>
 	            <td>${peIteracion.Vacunas}</td>
 	          </tr>
@@ -41,7 +44,36 @@
 	         <!-- terminamos de recorrer -->
         </tbody>
       </table>
-        
+      
+         </div>
+	   <!-- 1º columna -->
+	      
+       <div class="col">
+       
+       		<form method="post" action="perros">
+       		
+       			<input type="text" name="nombre" placeholder="Nombre del perro" class="form-control">
+       		
+       		
+       			<select name="idraza" class="form-select">
+       				<c:forEach var="r" items="${razas}">
+       					<option value="${r.id}">${r.nombre}</option>       				
+       				</c:forEach>
+       			</select>
+       			
+       			<label class="mt-3">Historia del perro:</label>	
+       			<textarea class="form-control mb-3"></textarea>
+       		
+       			<input type="submit" value="crear" class="btn btn-primary btn-block">
+       		
+       		</form>
+       
+       </div>
+       <!-- 2º columna -->     
+            
+   </div>
+   <!-- .row -->   
+      
 </main> 
 
 <jsp:include page="plantillas/footer.jsp"/>
