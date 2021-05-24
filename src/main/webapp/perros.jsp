@@ -37,8 +37,8 @@
 	            <td>${peIteracion.id}</td>
 	            <td>${peIteracion.nombre}</td>
 	            <td>${p.raza.nombre}</td>
-	            <td>${peIteracion.Historia}</td>
-	            <td>${peIteracion.Vacunas}</td>
+	            <td>${peIteracion.historia}</td>
+	            
 	          </tr>
 	         </c:forEach> 
 	         <!-- terminamos de recorrer -->

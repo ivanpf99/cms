@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConnectionHelper implements AutoCloseable {
 
 	private static Connection con = null;
-	private static final String DIRECCION_BBDD = "jdbc:sqlite:C:\\Desarrollo Java\\CMS\\cms.db";
+	private static final String DIRECCION_BBDD = "jdbc:sqlite:C:\\Desarrollo Java\\CMS\\pruebas.db";
 
 	public static Connection getConnection() throws Exception {
 

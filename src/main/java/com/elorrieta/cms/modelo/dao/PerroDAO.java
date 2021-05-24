@@ -27,7 +27,7 @@ public class PerroDAO {
 
 		ArrayList<Perro> perros = new ArrayList<Perro>();
 		String sql = " SELECT perro.id, perro.nombre, historia, raza.nombre as 'raza', raza.id as 'id_raza' "
-				+ " FROM perro INNER JOIN raza ON perro.id_raza = raza.id " + " ORDER BY perro.id ASC; ";
+				+ " FROM perro INNER JOIN raza ON perro.id_raza = raza.id ORDER BY perro.id ASC; ";
 
 		try (
 
@@ -45,19 +45,17 @@ public class PerroDAO {
 				// cogemos los valres de las columnas
 				int colId = rs.getInt("id");
 				String colNombre = rs.getString("nombre");
-				String colRaza = rs.getString("id_raza");
 				String colHistoria = rs.getString("historia");
-				String colVacunas = rs.getString("vacunas");
+				String colRaza = rs.getString("raza");
 				int colRazaId = rs.getInt("id_raza");
 
 				pe.setId(colId);
 				pe.setNombre(colNombre);
 				pe.setHistoria(colHistoria);
-				pe.setVacunas(colVacunas);
 
 				Raza raza = new Raza();
 				raza.setId(colRazaId);
-				raza.setNombre(colRazaNombre);
+				raza.setNombre(colRaza);
 				pe.setRaza(raza);
 
 				// añadir objeto al ArrayList
