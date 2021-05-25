@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.elorrieta.cms.modelo.Perro;
 import com.elorrieta.cms.modelo.Raza;
 import com.elorrieta.cms.modelo.dao.PerroDAO;
 import com.elorrieta.cms.modelo.dao.RazaDAO;
@@ -46,14 +47,34 @@ public class PerrosController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// recoger parametros
+		try {
+			// recoger parametros
+			String nombre = request.getParameter("nombre");
+			String historia = request.getParameter("historia");
+			int idraza = Integer.parseInt(request.getParameter("idraza"));
 
-		int idraza = Integer.parseInt(request.getParameter("idraza"));
+			// Crear Perro y Raza, para la insert no necesito el nombre de la raza
+			Raza r = new Raza();
+			r.setId(idraza);
 
-		// Crear Perro y Raza, para la insert no necesito el nombre de la raza
-		Raza r = new Raza();
-		r.setId(idraza);
+			Perro pe = new Perro();
+			pe.setNombre(nombre);
+			pe.setHistoria(historia);
+			pe.setRaza(r);
 
-		doGet(request, response);
+			// enviamos este atributo para poder pintar el perro en el formulario
+			request.setAttribute("perro", pe);
+
+			// insertar en la bbdd usando el DAO
+			PerroDAO.insert(pe);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			request.setAttribute("mensaje", "Lo sentimos pero el nombre del perro ya existe");
+		} finally {
+
+			doGet(request, response);
+		}
 	}
 }

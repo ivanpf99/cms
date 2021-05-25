@@ -71,4 +71,32 @@ public class PerroDAO {
 		return perros;
 	}
 
+	/**
+	 * Inserta un perro en la base de datos
+	 * 
+	 * @param pNuevo Perro a insertar
+	 * @return true si es insertado, false en caso contrario
+	 */
+	public static boolean insert(Perro pNuevo) throws Exception {
+
+		boolean resultado = false;
+		String sql = "INSERT INTO perro ( nombre, historia, id_raza ) VALUES (?,?,?);";
+
+		try (Connection con = ConnectionHelper.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+			// sustituir ? por valores del pNuevo
+			pst.setString(1, pNuevo.getNombre());
+			pst.setString(2, pNuevo.getHistoria());
+			pst.setInt(3, pNuevo.getRaza().getId());
+
+			// ejecuta la INSERT
+			int affectedRows = pst.executeUpdate();
+			// comprobamos que se ha insertado una fila
+			if (affectedRows == 1) {
+				resultado = true;
+			}
+		}
+
+		return resultado;
+	}
+
 }

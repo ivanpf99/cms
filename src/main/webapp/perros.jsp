@@ -50,7 +50,7 @@
 	      
        <div class="col">
        
-       		<form method="post" action="perros">
+       		<form method="post" action="perro">
        		
        			<input type="text" name="nombre" placeholder="Nombre del perro" class="form-control">
        		
@@ -62,7 +62,7 @@
        			</select>
        			
        			<label class="mt-3">Historia del perro:</label>	
-       			<textarea class="form-control mb-3"></textarea>
+       			<textarea name="historia" class="form-control mb-3"></textarea>
        		
        			<input type="submit" value="crear" class="btn btn-primary btn-block">
        		

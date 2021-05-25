@@ -32,6 +32,10 @@
            <a class="nav-link" 
               href="perro">Perros</a>
          </li>
+         <li class="nav-item">
+           <a class="nav-link" 
+              href="tanque">Tanques</a>
+         </li>
        </ul>
      </div>
    </div>
