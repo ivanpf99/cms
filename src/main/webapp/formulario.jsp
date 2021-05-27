@@ -1,52 +1,60 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <jsp:include page="plantillas/cabecera.jsp"/>
 <jsp:include page="plantillas/menu.jsp"/>
 
  <main class="container">
-    <h1>Listado Participantes</h1>
-    <a href="participantes?id=?">Nuevo Participante</a>
+    <h1>${titulo}</h1>
+    <form action="participantes-editar" method="post" class="w-50">
     
-    <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Email</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-        <!-- 
-        	recorrer atributo con la lista de particpantes y pintar TR
-        	items="$ { participantes}" => Nombre del atributo que nos envia en controlador
-        	var="pIteracion"           => nombre de la variable que iteramos que es un Participante 
-        
-        	${p.nombre} es lo mismo que p.getNombre(), es una forma abreviada
-        	
-        	for ( Participante pIteracion : participantes )
-        
-        -->
-        
-	        <c:forEach var="pIteracion" items="${participantes}">
-	          <tr>
-	            <th scope="row">${pIteracion.id}</th>
-	            <td><img src="${pIteracion.avatar}" alt="imagen avatar usuario" class="avatar"/></td>
-	            <td>${pIteracion.nombre}</td>
-	            <td>${pIteracion.apellidos}</td>
-	            <td>${pIteracion.email}</td>
-	            <td><a href="participantes?id=${pIteracion.id}">Editar</a></td>
-	            <td><a href="participantes?id=${pIteracion.id}&op=eliminar">Eliminar</a></td>
-	          </tr>
-	         </c:forEach> 
-	         
-        <!-- terminamos de recorrer -->
-        </tbody>
-      </table>
-        
-</main> 
+			<p class="text-warning">ID esta oculto</p>
+            <input type="text" 
+                   name="id"                   
+                   id="id"
+                   value="${participante.id}"
+                   required            
+                   readonly       
+                   class="form-control">
+
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" 
+                   name="nombre"                   
+                   id="nombre"
+                   value="${participante.nombre}"
+                   required 
+                   autofocus 
+                   class="form-control" 
+                   placeholder="Nombre sin apellidos">
+
+            <label for="apellidos" class="form-label">Apellidos:</label>
+            <input type="text" 
+                    name="apellidos" 
+                    id="apellidos"
+                    value="${participante.apellidos}"
+                    required                      
+                    class="form-control" 
+                    placeholder="escribe los 2 apellidos">
+
+                    
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" 
+                    name="email"
+                    id="email" 
+                    value="${participante.email}"
+                    required                      
+                    class="form-control" 
+                    placeholder="tu@correo.com">
+                    
+            <label for="avatar" class="form-label">Avatar:</label>
+            <input type="text" 
+                    name="avatar"
+                    id="avatar" 
+                    value="${participante.avatar}"
+                    required                      
+                    class="form-control" 
+                    placeholder="url de la imagen para el avatar">       
+
+            <input type="submit" value="${ ( participante.id == 0 ) ? 'Crear' : 'Editar' }" class="btn btn-block btn-primary mt-4">
+        </form>
+
+</main>  
 
 <jsp:include page="plantillas/footer.jsp"/>

@@ -5,14 +5,8 @@
 
  <main class="container">
     <h1>Listado Participantes</h1>
-    <a href="formulario.html">Nuevo Participante</a>
+    <a href="participantes-editar?id=0">Nuevo Participante</a>
     
-    
-    <hr>
-    Pintamos en atributo que nos envia el controlador
-    <hr>
-    ${participantes}
-    <hr>
     
     <table class="table table-striped table-hover">
         <thead>
@@ -22,6 +16,8 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Email</th>
+             <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +43,21 @@
         <!-- terminamos de recorrer -->
         </tbody>
       </table>
+      
+       <script>
+      	
+      	function confirmarEliminacion(nombre){
+      		
+      		if ( window.confirm("¿ Quieres Eliminar a " + nombre + " ?") ){
+      			console.debug('eliminamos');
+      		}else {
+      			event.preventDefault(); // prevenir que el ancla haga su funcion
+      			console.debug('No Eliminamos');
+      		}
+      		
+      	}
+      
+      </script>
         
 </main> 
 

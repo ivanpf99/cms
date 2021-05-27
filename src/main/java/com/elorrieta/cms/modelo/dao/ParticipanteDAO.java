@@ -16,6 +16,24 @@ import com.elorrieta.cms.modelo.Participante;
 public class ParticipanteDAO {
 
 	/**
+	 * Filtra los participantes por nombre, apellidos o email
+	 * 
+	 * @param palabraBusqueda la palabra a buscar en las 3 columnas
+	 * @return ArrayList con todos los participantes filtrados
+	 */
+
+	public static ArrayList<Participante> filtrar(String palabraBusqueda) {
+
+		// SELECT * FROM participante WHERE nombre LIKE '%txi%' OR apellidos LIKE
+		// '%txi%' OR email LIKE '%txi%';
+		// SELECT * FROM participante WHERE nombre LIKE ? OR apellidos LIKE ? OR email
+		// LIKE ?;
+		// CUIDADO sustituir pst con pst.setString(1, "'%" + palabraBusqueda + "%'" );
+
+		return null;
+	}
+
+	/**
 	 * Consulta la tabla 'participante' para recuperar todos y devolverlos en una
 	 * coleccion
 	 * 
